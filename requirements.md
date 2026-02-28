@@ -1,5 +1,10 @@
 # Requirements – Math Trainer
 
+## Layout
+
+- The quiz question must be visible on mobile without scrolling
+- Header is a single compact line: title · mastered count
+
 ## Target Use Case
 
 - Mobile-friendly math trainer for elementary school students

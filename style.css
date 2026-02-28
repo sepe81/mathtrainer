@@ -33,29 +33,33 @@ body {
 /* ===== Header ===== */
 header {
   text-align: center;
-  padding: 24px 0 12px;
+  padding: 12px 0 8px;
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--primary);
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.subtitle {
-  font-size: 1rem;
-  color: #7f8c8d;
-  margin-top: 2px;
+.header-sep {
+  color: #bdc3c7;
+  font-weight: 400;
 }
 
 .stats-summary {
-  margin-top: 6px;
   font-size: 0.9rem;
+  font-weight: 600;
   color: #555;
   background: var(--card);
   display: inline-block;
-  padding: 4px 14px;
+  padding: 3px 12px;
   border-radius: 20px;
   box-shadow: var(--shadow);
 }
