@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Trainer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header>
+      <h1>Math Trainer</h1>
+      <p class="subtitle">Times Tables 1×1</p>
+      <p class="stats-summary" id="stats-summary">Loading…</p>
+    </header>
+
+    <!-- Matrix Overview -->
+    <section class="section" id="matrix-section">
+      <h2 class="section-title">Overview</h2>
+      <div class="matrix-scroll">
+        <table class="matrix" id="matrix"></table>
+      </div>
+    </section>
+
+    <!-- Table Filter -->
+    <section class="section" id="filter-section">
+      <h2 class="section-title">Filter</h2>
+      <div class="filter-pills" id="filter-pills"></div>
+    </section>
+
+    <!-- Quiz Panel -->
+    <section class="section" id="quiz-section">
+      <div class="quiz-card">
+        <div class="question" id="question">?</div>
+        <button class="btn btn-show" id="btn-show">Show Answer</button>
+        <div class="answer hidden" id="answer"></div>
+        <div class="action-buttons hidden" id="action-buttons">
+          <button class="btn btn-correct" id="btn-correct">✓ Correct</button>
+          <button class="btn btn-wrong" id="btn-wrong">✗ Wrong</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Panel -->
+    <section class="section" id="stats-section">
+      <button class="stats-toggle" id="stats-toggle" aria-expanded="false">
+        Statistics <span class="toggle-icon">▼</span>
+      </button>
+      <div class="stats-body hidden" id="stats-body">
+        <div class="stats-grid" id="stats-grid"></div>
+        <button class="btn btn-reset" id="btn-reset">Reset Progress</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Cell stats popover -->
+  <div id="cell-popover" class="cell-popover hidden" role="tooltip">
+    <div id="cell-popover-content"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
