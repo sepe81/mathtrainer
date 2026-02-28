@@ -28,18 +28,19 @@
 - Short tap on a cell jumps directly to that question in the quiz; the table filter resets to "All" so the pair is always reachable
 - Long press on a cell shows a stats popover (correct / wrong count)
 
-### Table Filter
-
-- Pill buttons to filter by table (All, 1×–10×)
-- Multi-select: filtering by "7×" includes all pairs involving 7
-- "All" is mutually exclusive with specific table selections
-
 ### Quiz Panel
 
 - Displays the current question in large text
 - "Show Answer" button reveals the result
 - Two large buttons: **Correct** and **Wrong**
 - Brief visual feedback after each answer, then next question loads automatically
+
+### Table Filter
+
+- Displayed below the quiz panel (secondary interaction, not needed on every turn)
+- Pill buttons to filter by table (All, 1×–10×)
+- Multi-select: filtering by "7×" includes all pairs involving 7
+- "All" is mutually exclusive with specific table selections
 
 ### Quiz Engine
 
