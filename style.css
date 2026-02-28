@@ -106,6 +106,8 @@ header h1 {
   cursor: pointer;
   transition: transform .1s, opacity .1s;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .matrix th {

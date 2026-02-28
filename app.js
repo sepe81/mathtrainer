@@ -140,14 +140,17 @@ function attachCellInteraction(td, a, b) {
     ? `${a}×${b} – ✓${e.correct} ✗${e.wrong}`
     : `${a}×${b} – not practiced`;
 
-  td.addEventListener('pointerdown', () => {
+  // Touch devices: use touch events (pointer events get cancelled in
+  // scroll containers on Android before pointerup can fire)
+  td.addEventListener('touchstart', (ev) => {
+    ev.preventDefault(); // block ghost click & scroll-gesture detection
     popoverTimer = setTimeout(() => {
       showCellPopover(td, a, b);
       popoverTimer = null;
     }, LONG_PRESS_MS);
-  });
+  }, { passive: false });
 
-  td.addEventListener('pointerup', () => {
+  td.addEventListener('touchend', () => {
     if (popoverTimer) {
       clearTimeout(popoverTimer);
       popoverTimer = null;
@@ -155,9 +158,14 @@ function attachCellInteraction(td, a, b) {
     }
   });
 
-  td.addEventListener('pointercancel', () => {
+  td.addEventListener('touchmove', () => {
     clearTimeout(popoverTimer);
     popoverTimer = null;
+  });
+
+  // Desktop: plain click (no touch events fired by mouse)
+  td.addEventListener('click', (ev) => {
+    if (ev.pointerType !== 'touch') jumpToQuestion(a, b);
   });
 }
 
