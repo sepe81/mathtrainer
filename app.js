@@ -140,23 +140,18 @@ function attachCellInteraction(td, a, b) {
     ? `${a}×${b} – ✓${e.correct} ✗${e.wrong}`
     : `${a}×${b} – not practiced`;
 
-  let moved = false;
-
-  td.addEventListener('pointerdown', (ev) => {
-    moved = false;
+  td.addEventListener('pointerdown', () => {
     popoverTimer = setTimeout(() => {
       showCellPopover(td, a, b);
       popoverTimer = null;
     }, LONG_PRESS_MS);
   });
 
-  td.addEventListener('pointermove', () => { moved = true; });
-
   td.addEventListener('pointerup', () => {
     if (popoverTimer) {
       clearTimeout(popoverTimer);
       popoverTimer = null;
-      if (!moved) jumpToQuestion(a, b);
+      jumpToQuestion(a, b);
     }
   });
 
