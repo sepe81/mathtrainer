@@ -140,20 +140,22 @@ function attachCellInteraction(td, a, b) {
     ? `${a}×${b} – ✓${e.correct} ✗${e.wrong}`
     : `${a}×${b} – not practiced`;
 
-  // Touch devices: use touch events (pointer events get cancelled in
-  // scroll containers on Android before pointerup can fire)
-  td.addEventListener('touchstart', (ev) => {
-    ev.preventDefault(); // block ghost click & scroll-gesture detection
+  // Touch: passive listener (no preventDefault) for broadest compatibility.
+  // A timestamp guards against the ghost click that follows ~300ms later.
+  let lastTouchEnd = 0;
+
+  td.addEventListener('touchstart', () => {
     popoverTimer = setTimeout(() => {
       showCellPopover(td, a, b);
       popoverTimer = null;
     }, LONG_PRESS_MS);
-  }, { passive: false });
+  }, { passive: true });
 
   td.addEventListener('touchend', () => {
     if (popoverTimer) {
       clearTimeout(popoverTimer);
       popoverTimer = null;
+      lastTouchEnd = Date.now();
       jumpToQuestion(a, b);
     }
   });
@@ -163,9 +165,10 @@ function attachCellInteraction(td, a, b) {
     popoverTimer = null;
   });
 
-  // Desktop: plain click (no touch events fired by mouse)
-  td.addEventListener('click', (ev) => {
-    if (ev.pointerType !== 'touch') jumpToQuestion(a, b);
+  // Desktop mouse click; also catches touch browsers that skip touchend.
+  // Timestamp guard suppresses the ghost click on touch devices.
+  td.addEventListener('click', () => {
+    if (Date.now() - lastTouchEnd > 350) jumpToQuestion(a, b);
   });
 }
 
